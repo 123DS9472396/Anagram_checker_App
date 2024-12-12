@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anagram Checker App by Sir</title>
+    <style>
+        * { font-size: 40px; }
+        body { background-color: azure; }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Anagram Checker App</h1>
+        <form onsubmit="check(event)">
+            <input type="text" id="string1" placeholder="Enter first string" />
+            <br/><br/>
+            <input type="text" id="string2" placeholder="Enter second string" />
+            <br/><br/>
+            <input type="submit" value="Check Anagram" />
+        </form>
+        <h2 id="msg"></h2>
+    </center>
+    <script>
+        function check(event) {
+            event.preventDefault();
+
+            let string1 = document.getElementById("string1");
+            let string2 = document.getElementById("string2");
+            let msg = document.getElementById("msg");
+
+            if (string1.value.trim() === "" || string2.value.trim() === "") {
+                alert("Both strings are required!");
+                msg.innerHTML = "";
+                string1.focus();
+                return;
+            }
+
+            let org_string1 = string1.value.toLowerCase().split("").sort().join("");
+            let org_string2 = string2.value.toLowerCase().split("").sort().join("");
+
+            if (org_string1 === org_string2) {
+                msg.innerHTML = "Yes, they are anagrams!";
+            } else {
+                msg.innerHTML = "No, they are not anagrams.";
+            }
+        }
+    </script>
+</body>
+</html>
